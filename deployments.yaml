@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: maduflavins/airbn-spleet-backend
+        image: maduflavins/airbn-spleet-backend:tagVersion
         ports:
         - name: http
           containerPort: 5000

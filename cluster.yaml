@@ -1,0 +1,25 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: spleet-cluster
+  region: us-east-1
+  version: "1.19"
+
+availabilityZones: ["us-east-1a", "us-east-1b"]
+
+managedNodeGroups:
+- name: nodegroup
+  desiredCapacity: 2
+  instanceType: t3.small
+  ssh:
+    allow: true
+    enableSsm: true
+
+# To enable all of the control plane logs, uncomment below:
+# cloudWatch:
+#  clusterLogging:
+#    enableTypes: ["*"]
+
+secretsEncryption:
+  keyARN: arn:aws:kms:us-east-1:984561127921:key/62756b68-60e8-4e16-8f80-77833d1f6ad8
