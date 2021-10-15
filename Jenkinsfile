@@ -4,6 +4,11 @@ pipeline{
         DOCKER_TAG = getDockerTag()
     }
     stages{
+        stage("Clone Repo"){
+            steps{
+                git credentialsId: 'githubuser', url: 'https://github.com/Maduflavins/airbnb-spleet-backend.git'
+            }
+        }
         stage('Build Docker Image'){
             steps{
                 sh "docker build . -t maduflavins/airbn-spleet-backend:${DOCKER_TAG}"
