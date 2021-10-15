@@ -21,6 +21,17 @@ pipeline{
             steps{
                 sh "chmod +x changeTag.sh"
                 sh "./changeTag.sh ${DOCKER_TAG}"
+                sshagent(['airbnb-spleet']) {
+                    sh "scp -o StrictHostKeyChecking=no service.yaml backend.yaml ubuntu@54.87.24.18:/home/ubuntu/"
+                    script{
+                        try{
+                            sh "ssh ubuntu@54.87.24.18 kubectl apply -f ."
+                        }catch{
+                            sh "ssh ubuntu@54.87.24.18 kubectl create -f ."
+                        }
+                    }
+                
+}
             }
         }
     }
