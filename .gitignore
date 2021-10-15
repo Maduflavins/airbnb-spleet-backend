@@ -9,3 +9,4 @@ npm-debug.log*
 
 # dotenv environment variables file
 .env
+ca-certificate.crt
