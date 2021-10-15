@@ -16,10 +16,11 @@ pipeline{
         }
         stage('DockerHub Push'){
             steps{
-                withCredentials([string(credentialsId: 'docker-hub', variable: dockerHubPwd)]){
+                withCredentials([string(credentialsId: 'dockerHubPwd', variable: '')]) {
                     sh "docker login -u maduflavins -p ${dockerHubPwd}"
                     sh "docker push maduflavins/maduflavins/airbn-spleet-backend:${DOCKER_TAG}"
                 }
+
             }
         }
         stage('Deploy to k8s'){
