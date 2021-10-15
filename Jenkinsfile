@@ -50,7 +50,3 @@ def getDockerTag(){
     return tag
 }
 
-
-
-
-maduflavins/airbn-spleet-backend:05eb2c3ae3d41cf3acb37c41187fd88dc5ddea84
