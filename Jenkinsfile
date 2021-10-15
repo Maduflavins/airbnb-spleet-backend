@@ -16,7 +16,7 @@ pipeline{
         }
         stage('DockerHub Push'){
             steps{
-                withCredentials([string(credentialsId: 'dockerHubPwd', variable: '')]) {
+                withCredentials([string(credentialsId: 'dockerHubPwd', variable: 'dockerHubPwd')]) {
                     sh "docker login -u maduflavins -p ${dockerHubPwd}"
                     sh "docker push maduflavins/maduflavins/airbn-spleet-backend:${DOCKER_TAG}"
                 }
@@ -38,6 +38,16 @@ pipeline{
                     }             
 }
             }
+        }
+        post {
+        // Clean after build
+        always {
+            cleanWs(cleanWhenNotBuilt: false,
+                    deleteDirs: true,
+                    disableDeferredWipeout: true,
+                    notFailBuild: true,
+                    patterns: [[pattern: '.gitignore', type: 'INCLUDE'],
+                               [pattern: '.propsfile', type: 'EXCLUDE']])
         }
     }
 }
