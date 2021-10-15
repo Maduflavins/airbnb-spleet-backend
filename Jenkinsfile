@@ -38,8 +38,7 @@ pipeline{
                     }             
 }
             }
-        }
-        post {
+               post {
         // Clean after build
         always {
             cleanWs(cleanWhenNotBuilt: false,
@@ -48,8 +47,11 @@ pipeline{
                     notFailBuild: true,
                     patterns: [[pattern: '.gitignore', type: 'INCLUDE'],
                                [pattern: '.propsfile', type: 'EXCLUDE']])
+            }
         }
-    }
+ }
+
+     
 }
 
 def getDockerTag(){
