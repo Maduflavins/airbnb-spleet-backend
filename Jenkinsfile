@@ -18,7 +18,7 @@ pipeline{
             steps{
                 withCredentials([string(credentialsId: 'dockerHubPwd', variable: 'dockerHubPwd')]) {
                     sh "docker login -u maduflavins -p ${dockerHubPwd}"
-                    sh "docker push maduflavins/maduflavins/airbn-spleet-backend:${DOCKER_TAG}"
+                    sh "docker push maduflavins/airbn-spleet-backend:${DOCKER_TAG}"
                 }
 
             }
@@ -49,3 +49,8 @@ def getDockerTag(){
     def tag  = sh script: 'git rev-parse HEAD', returnStdout: true
     return tag
 }
+
+
+
+
+maduflavins/airbn-spleet-backend:05eb2c3ae3d41cf3acb37c41187fd88dc5ddea84
